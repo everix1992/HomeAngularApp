@@ -11,6 +11,7 @@ namespace HomeAngularApp.Services.AdventOfCode.Impl
 
         public string Name => "Day 1: Report Repair (Part 2)";
 
+        // TODO: Might be able to share code with the original report repair problem
         public async Task<string> ExecuteAsync(IEnumerable<string> inputLines)
         {
             var values = new List<int>();
@@ -31,11 +32,11 @@ namespace HomeAngularApp.Services.AdventOfCode.Impl
                 {
                     for (var k = j + 1; k < values.Count; k++)
                     {
-                        var sum = values[i] + values[j];
+                        var sum = values[i] + values[j] + values[k];
 
                         if (sum == DesiredSum)
                         {
-                            return (values[i] * values[j]).ToString();
+                            return (values[i] * values[j] * values[k]).ToString();
                         }
                     }
                 }
