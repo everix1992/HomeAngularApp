@@ -1,3 +1,4 @@
+using HomeAngularApp.Formatters;
 using HomeAngularApp.Services.AdventOfCode.Impl;
 using HomeAngularApp.Services.AdventOfCode.Intf;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +33,10 @@ namespace HomeAngularApp
                 });
             });
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.InputFormatters.Add(new PlainTextInputFormatter());
+            });
 
             services.AddTransient<IAdventOfCodeSolution, ReportRepair>();
             services.AddTransient<IAdventOfCodeSolution, ReportRepairPart2>();
