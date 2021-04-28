@@ -1,15 +1,38 @@
 <div>
   <select [(ngModel)]="selectedSolution">
-    <option *ngFor="let solution of solutionNames" [value]="solution">{{ solution }}</option>
+    <option *ngFor="let solution of solutions" [value]="solution">{{ solution.name }}</option>
   </select>
 </div>
 <br />
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Upload Text">
+    <div>
+      <textarea [(ngModel)]="inputText" (ngModelChange)="inputTextChanged()"></textarea>
+    </div>
+    <div>
+      <button (click)="uploadTextClicked()">Upload</button>
+      <label *ngIf="currentTextUploaded" style="color: green">Input uploaded</label>
+      <label *ngIf="!currentTextUploaded && currentInputId != null" style="color: orange">Uploaded input out of
+        date</label>
+      <label *ngIf="!currentTextUploaded && currentInputId == null" style="color: red">Waiting for input upload</label>
+    </div>
+  </mat-tab>
+  <mat-tab label="Upload Input File">
+    <div>
+      <input #fileInput hidden="true" type="file" onclick="this.value=null" (change)="fileInputChanged($event)" />
+    <button mat-flat-button color="primary" (click)="fileInput.click()">Choose Input File</button>
+    <label [hidden]="selectedFile == undefined" [style]="currentFileUploaded ? 'color: green' : 'color: orange'">{{ 'Selected File: ' + selectedFile?.name }}</label>
+    </div>
+    <div>
+      <button (click)="uploadFileClicked()" [disabled]="selectedFile == undefined">Upload</button>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
 <div>
-  <textarea [(ngModel)]="inputText"></textarea>
-</div>
-<div>
-  <button (click)="runButtonClicked()">Run</button>
-  <button (click)="clearButtonClicked()">Clear</button>
+  <button (click)="runButtonClicked()" [disabled]="currentInputId == null">Run</button>
+  <button (click)="clearButtonClicked()"
+    [disabled]="currentInputId == null && (inputText == null || inputText?.length === 0)">Clear</button>
 </div>
 <div>
   <p><b>Result: </b>{{ resultText }}</p>

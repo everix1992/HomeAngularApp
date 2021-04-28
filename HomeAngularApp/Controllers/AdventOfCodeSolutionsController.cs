@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +14,9 @@ namespace HomeAngularApp.Controllers
     public class AdventOfCodeSolutionsController : ControllerBase
     {
         // TODO: Need to garbage collect 
-        private static readonly ConcurrentDictionary<string, string> _input = new ConcurrentDictionary<string, string>();
+        private static readonly ConcurrentDictionary<string, string>
+            _input = new ConcurrentDictionary<string, string>();
+
         private readonly IDictionary<int, IAdventOfCodeSolution> _solutions;
 
         public AdventOfCodeSolutionsController(IEnumerable<IAdventOfCodeSolution> adventOfCodeSolutions)
@@ -56,13 +57,26 @@ namespace HomeAngularApp.Controllers
             {
                 return BadRequest("Invalid Input ID");
             }
-            
+
             var inputLines = input.Split(new[] {"\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
             return (await solution.ExecuteAsync(inputLines));
         }
 
+        [HttpDelete("input/{inputId}")]
+        public ActionResult DeleteInput(string inputId)
+        {
+            var found = _input.TryRemove(inputId, out var _);
+
+            if (!found)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [HttpPost("input")]
-        public ActionResult<string> UploadInput([FromBody]string input)
+        public ActionResult<string> UploadInput([FromBody] string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
