@@ -25,7 +25,6 @@ namespace HomeAngularApp.Services.AdventOfCode.Impl
                     throw new NotImplementedException("Missing regex support for this line of input: " + line);
                 }
 
-
                 // TODO: Handle bad input
                 var rangeStart = int.Parse(match.Groups[1].Value);
                 var rangeEnd = int.Parse(match.Groups[2].Value);

@@ -1,0 +1,16 @@
+<div>
+  <select [(ngModel)]="selectedSolution">
+    <option *ngFor="let solution of solutionNames" [value]="solution">{{ solution }}</option>
+  </select>
+</div>
+<br />
+<div>
+  <textarea [(ngModel)]="inputText"></textarea>
+</div>
+<div>
+  <button (click)="runButtonClicked()">Run</button>
+  <button (click)="clearButtonClicked()">Clear</button>
+</div>
+<div>
+  <p><b>Result: </b>{{ resultText }}</p>
+</div>

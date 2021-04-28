@@ -1,18 +1,27 @@
 <!-- TODO: Build out a real page instead of this extremely basic UI -->
-
-<div>
-  <select [(ngModel)]="selectedSolution">
-    <option *ngFor="let solution of solutionNames" [value]="solution">{{ solution }}</option>
-  </select>
-</div>
-<br />
-<div>
-  <textarea [(ngModel)]="input"></textarea>
-</div>
-<div>
-  <button (click)="runButtonClicked()">Run</button>
-  <button (click)="clearButtonClicked()">Clear</button>
-</div>
-<div>
-  <p><b>Result: </b>{{ resultText }}</p>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="advent-of-code">Advent of Code</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Nick Strub's Personal Projects</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

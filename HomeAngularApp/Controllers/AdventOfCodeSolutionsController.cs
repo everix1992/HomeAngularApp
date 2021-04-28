@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using HomeAngularApp.Services.AdventOfCode.Intf;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

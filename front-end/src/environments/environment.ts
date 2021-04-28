@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://localhost:44345"
+  apiBaseUrl: "https://localhost:44345",
+  websiteTitleSuffix: " | Nick Strub"
 };
 
 /*
