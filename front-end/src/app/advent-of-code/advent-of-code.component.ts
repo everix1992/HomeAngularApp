@@ -19,7 +19,7 @@ export class AdventOfCodeComponent implements OnInit {
   public selectedSolution?: SolutionViewModel;
   public solutions: SolutionViewModel[] = [];
 
-  private controllerUrl: string = "/api/v1/AdventOfCodeSolutions";
+  private controllerUrl: string = "/api/v1/advent-of-code";
 
   constructor(private http: HttpClient, private titleService: Title) {
     this.titleService.setTitle("Advent of Code Challenges" + environment.websiteTitleSuffix);
@@ -45,10 +45,8 @@ export class AdventOfCodeComponent implements OnInit {
   }
 
   fileInputChanged(event: any) {
-    console.log(event);
     if (event?.target?.files?.length > 0) {
       this.selectedFile = event.target.files[0];
-      console.log(this.selectedFile);
     } else {
       this.selectedFile = undefined;
     }

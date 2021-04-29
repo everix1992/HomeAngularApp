@@ -17,13 +17,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { AdventOfCodeComponent } from './advent-of-code/advent-of-code.component';
 import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
+import { ContactBookComponent } from './contact-book/contact-book.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AdventOfCodeComponent,
-    HomeComponent
+    HomeComponent,
+    ContactBookComponent
   ],
   imports: [
     BrowserModule,

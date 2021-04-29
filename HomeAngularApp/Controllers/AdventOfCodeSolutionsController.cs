@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HomeAngularApp.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/advent-of-code")]
     public class AdventOfCodeSolutionsController : ControllerBase
     {
         // TODO: Need to garbage collect 
@@ -23,6 +23,7 @@ namespace HomeAngularApp.Controllers
         {
             _solutions = new Dictionary<int, IAdventOfCodeSolution>();
 
+            // TODO: Need some sort of constant id assigning? Maybe just a guid in the individual solutions classes?
             var id = 0;
             foreach (var solution in adventOfCodeSolutions)
             {

@@ -1,6 +1,6 @@
 <div>
   <select [(ngModel)]="selectedSolution">
-    <option *ngFor="let solution of solutions" [value]="solution">{{ solution.name }}</option>
+    <option *ngFor="let solution of solutions" [ngValue]="solution">{{ solution.name }}</option>
   </select>
 </div>
 <br />

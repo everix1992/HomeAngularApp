@@ -1,6 +1,10 @@
+using HomeAngularApp.DataAccess.Contacts.Impl;
+using HomeAngularApp.DataAccess.Contacts.Intf;
 using HomeAngularApp.Formatters;
 using HomeAngularApp.Services.AdventOfCode.Impl;
 using HomeAngularApp.Services.AdventOfCode.Intf;
+using HomeAngularApp.Services.ContactBook;
+using HomeAngularApp.Services.ContactBook.Intf;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,6 +45,9 @@ namespace HomeAngularApp
             services.AddTransient<IAdventOfCodeSolution, ReportRepair>();
             services.AddTransient<IAdventOfCodeSolution, ReportRepairPart2>();
             services.AddTransient<IAdventOfCodeSolution, PasswordPhilosophy>();
+            services.AddTransient<IAdventOfCodeSolution, TobogganTrajectory>();
+            services.AddTransient<IContactBookService, ContactBookService>();
+            services.AddSingleton<IContactRepository, ContactRepository_FileBacked>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

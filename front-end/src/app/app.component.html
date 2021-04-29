@@ -1,4 +1,3 @@
-<!-- TODO: Build out a real page instead of this extremely basic UI -->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -8,6 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink="/">Home</a>
       <a mat-list-item routerLink="advent-of-code">Advent of Code</a>
+      <a mat-list-item routerLink="contact-book">Contact Book</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
